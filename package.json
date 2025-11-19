@@ -1,7 +1,7 @@
 {
-  "name": "react-native-google-places-autocomplete",
+  "name": "rngpa-ts",
   "version": "0.0.1",
-  "description": "Customizable Google Places autocomplete component for iOS and Android React-Native apps",
+  "description": "Reac tNAtive Google Places Typescript",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "files": [
