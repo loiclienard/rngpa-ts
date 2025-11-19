@@ -1,0 +1,1 @@
+{"version":3,"file":"urlUtils.d.ts","sourceRoot":"","sources":["../../src/utils/urlUtils.ts"],"names":[],"mappings":"AACA,OAAO,KAAK,EAAE,sBAAsB,EAAE,MAAM,UAAU,CAAC;AAMvD,wBAAgB,eAAe,CAC7B,UAAU,EAAE,sBAAsB,GAAG,SAAS,GAC7C,MAAM,CAiBR;AAKD,wBAAgB,oBAAoB,CAClC,UAAU,EAAE,sBAAsB,GAAG,SAAS,GAC7C,QAAQ,CAAC,MAAM,CAAC,MAAM,EAAE,MAAM,CAAC,CAAC,CAElC"}

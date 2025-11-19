@@ -11,7 +11,8 @@
   "scripts": {
     "build": "tsc",
     "prepublishOnly": "tsc",
-    "prepare": "husky",
+    "prepare": "npm run build || true",
+    "postinstall": "npm run build || true",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
@@ -22,7 +23,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/FaridSafi/react-native-google-places-autocomplete.git"
+    "url": "git+https://github.com/loiclienard/rngpa-ts.git"
   },
   "keywords": [
     "autocomplete",
@@ -35,9 +36,9 @@
     "typescript"
   ],
   "bugs": {
-    "url": "https://github.com/FaridSafi/react-native-google-places-autocomplete/issues"
+    "url": "https://github.com/loiclienard/rngpa-ts/issues"
   },
-  "homepage": "https://github.com/FaridSafi/react-native-google-places-autocomplete#readme",
+  "homepage": "https://github.com/loiclienard/rngpa-ts#readme",
   "dependencies": {
     "lodash.debounce": "^4.0.8",
     "qs": "~6.9.1",
