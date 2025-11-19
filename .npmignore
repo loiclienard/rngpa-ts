@@ -7,3 +7,6 @@ yarn.lock
 .*ignore
 .github
 .release-it.json
+src
+tsconfig.json
+eslint.config.mjs

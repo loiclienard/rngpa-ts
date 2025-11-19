@@ -1,7 +1,7 @@
 {
   "name": "rngpa-ts",
   "version": "0.0.1",
-  "description": "Reac tNAtive Google Places Typescript",
+  "description": "React Native Google Places Typescript",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "files": [
@@ -11,8 +11,7 @@
   "scripts": {
     "build": "tsc",
     "prepublishOnly": "tsc",
-    "prepare": "npm run build || true",
-    "postinstall": "npm run build || true",
+    "prepare": "husky || true",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
@@ -68,6 +67,14 @@
   "peerDependencies": {
     "react": "*",
     "react-native": ">= 0.60"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": true
+    },
+    "react-native": {
+      "optional": true
+    }
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
