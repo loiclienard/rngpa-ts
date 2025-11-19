@@ -6,6 +6,38 @@
 
 **Customizable Google Places autocomplete component for iOS and Android React-Native apps**
 
+## ⚠️ Version 0.0.1 - TypeScript Refactor
+
+This version is a complete TypeScript refactor of the library with the following improvements:
+
+- **Full TypeScript support** with strict typing
+- **Modern fetch API** with AbortController support (requires React Native >= 0.60)
+- **Named exports** for better tree-shaking
+- **Modular architecture** with clear separation of concerns
+- **Enhanced error handling** with discriminated union types
+
+### Breaking Changes from v2.x
+
+- Requires **React Native >= 0.60** for native `fetch` and `AbortController` support
+- If targeting RN < 0.60, install `abortcontroller-polyfill` and import it before using this library
+- Uses **named exports** instead of default export: `import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete'`
+- No more `prop-types` dependency (TypeScript provides type safety)
+
+### TypeScript Support
+
+All types are exported from the main package with descriptive prefixes:
+
+```typescript
+import {
+  GooglePlacesAutocomplete,
+  type GooglePlacesAutocompleteProps,
+  type GooglePlacesAutocompleteRef,
+  type GooglePlaceData,
+  type GooglePlaceDetail,
+  type GooglePlacesQuery,
+} from 'react-native-google-places-autocomplete';
+```
+
 ## Preview
 
 ![](https://raw.githubusercontent.com/FaridSafi/react-native-google-places-autocomplete/master/Assets/screenshot.png)
@@ -14,29 +46,68 @@
 
 **Step 1.**
 
-```
+```bash
 npm install react-native-google-places-autocomplete --save
 ```
 
 or
 
-```
+```bash
 yarn add react-native-google-places-autocomplete
 ```
 
 **Step 2.**
 
-Get your [Google Places API keys](https://developers.google.com/maps/documentation/places/web-service/get-api-key/) and enable "Google Places API Web Service" (NOT Android or iOS) in the console. Billing must be enabled on the account.
+For React Native < 0.60, install the AbortController polyfill:
+
+```bash
+npm install abortcontroller-polyfill --save
+```
+
+Then import it at the top of your app entry file:
+
+```typescript
+import 'abortcontroller-polyfill/dist/abortcontroller-polyfill-only';
+```
 
 **Step 3.**
+
+Get your [Google Places API keys](https://developers.google.com/maps/documentation/places/web-service/get-api-key/) and enable "Google Places API Web Service" (NOT Android or iOS) in the console. Billing must be enabled on the account.
+
+**Step 4.**
 
 Enable "Google Maps Geocoding API" if you want to use GoogleReverseGeocoding for Current Location
 
 ## Basic Example
 
-**Basic Address Search**
+**Basic Address Search (TypeScript)**
 
-```js
+```typescript
+import React from 'react';
+import { GooglePlacesAutocomplete, type GooglePlaceData, type GooglePlaceDetail } from 'react-native-google-places-autocomplete';
+
+const GooglePlacesInput = () => {
+  return (
+    <GooglePlacesAutocomplete
+      placeholder='Search'
+      onPress={(data: GooglePlaceData, details: GooglePlaceDetail | null) => {
+        // 'details' is provided when fetchDetails = true
+        console.log(data, details);
+      }}
+      query={{
+        key: 'YOUR API KEY',
+        language: 'en',
+      }}
+    />
+  );
+};
+
+export default GooglePlacesInput;
+```
+
+**Basic Address Search (JavaScript)**
+
+```javascript
 import React from 'react';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 
@@ -433,8 +504,7 @@ const GooglePlacesInput = () => {
       }}
       requestUrl={{
         useOnPlatform: 'web', // or "all"
-        url:
-          'https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api', // or any proxy server that hits https://maps.googleapis.com/maps/api
+        url: 'https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api', // or any proxy server that hits https://maps.googleapis.com/maps/api
         headers: {
           Authorization: `an auth token`, // if required for your proxy
         },

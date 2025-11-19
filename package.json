@@ -1,15 +1,24 @@
 {
   "name": "react-native-google-places-autocomplete",
-  "version": "2.5.7",
+  "version": "0.0.1",
   "description": "Customizable Google Places autocomplete component for iOS and Android React-Native apps",
-  "main": "GooglePlacesAutocomplete.js",
-  "types": "GooglePlacesAutocomplete.d.ts",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "lib",
+    "images"
+  ],
   "scripts": {
-    "lint": "eslint . && prettier --write .",
-    "release": "npx release-it",
-    "prettier": "prettier --write ."
+    "build": "tsc",
+    "prepublishOnly": "tsc",
+    "prepare": "husky",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
+    "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,json,md}\"",
+    "release": "npx release-it"
   },
-  "author": "Farid from Safi",
+  "author": "loiclienard",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -22,7 +31,8 @@
     "react-component",
     "react-native",
     "ios",
-    "android"
+    "android",
+    "typescript"
   ],
   "bugs": {
     "url": "https://github.com/FaridSafi/react-native-google-places-autocomplete/issues"
@@ -30,27 +40,41 @@
   "homepage": "https://github.com/FaridSafi/react-native-google-places-autocomplete#readme",
   "dependencies": {
     "lodash.debounce": "^4.0.8",
-    "prop-types": "^15.7.2",
     "qs": "~6.9.1",
     "uuid": "^10.0.0"
   },
   "devDependencies": {
-    "@react-native-community/eslint-config": "2.0.0",
-    "eslint": "7.10.0",
-    "husky": "4.3.0",
-    "lint-staged": "10.4.0",
-    "prettier": "2.1.2",
-    "typescript": "^3.8.3"
+    "@eslint/js": "^9.39.1",
+    "@types/eslint__js": "^8.42.3",
+    "@types/lodash.debounce": "^4.0.9",
+    "@types/qs": "^6.9.16",
+    "@types/react": "^18.0.0",
+    "@types/uuid": "^10.0.0",
+    "eslint": "^9.39.1",
+    "eslint-config-prettier": "^10.0.1",
+    "eslint-plugin-prettier": "^5.2.1",
+    "eslint-plugin-react": "^7.37.3",
+    "eslint-plugin-react-hooks": "^5.1.0",
+    "eslint-plugin-react-native": "^5.0.0",
+    "husky": "^9.1.6",
+    "lint-staged": "^15.2.10",
+    "prettier": "^3.3.3",
+    "react": "^18.3.1",
+    "react-native": "^0.76.5",
+    "typescript": "^5.6.3",
+    "typescript-eslint": "^8.47.0"
   },
   "peerDependencies": {
-    "react-native": ">= 0.59"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
+    "react": "*",
+    "react-native": ">= 0.60"
   },
   "lint-staged": {
-    "*/**": "yarn lint"
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,md}": [
+      "prettier --write"
+    ]
   }
 }
